@@ -1,6 +1,5 @@
 
 const { response } = require('express');
-const bcrypt = require('bcrypt');
 const Article = require('../models/article');
 
 const register = async(req, res = response ) => {
