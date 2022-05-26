@@ -20,7 +20,8 @@ router.post('/register', [
     check('l_name', 'El name es requerido.').not().isEmpty(),
     check('major', 'El name es requerido.').not().isEmpty(),
     check('semester', 'El name es requerido.').not().isEmpty(),
-    check('password', 'El password es requerido.').not().isEmpty()
+    check('password', 'El password es requerido.').not().isEmpty(),
+    check('image', 'El image es requerido.').not().isEmpty()
 ], register);
 
 

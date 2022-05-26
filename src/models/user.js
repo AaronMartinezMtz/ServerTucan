@@ -33,6 +33,10 @@ const UserSchema = Schema({
     semester:{
         type: Number,
         required: true
+    },
+    image:{
+        type: String,
+        default: "https://i.pinimg.com/originals/ff/a0/9a/ffa09aec412db3f54deadf1b3781de2a.png"
     }
 
 });
