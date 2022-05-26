@@ -106,20 +106,13 @@ const login = async(req, res = response) => {
 const renewJWT = async(req, res = response) => {
 
     const id = req.id
-    const role = req.role
-    const accessToken = await generarJWT(id, role)
+    const No_control = req.No_control
+    const accessToken = await generarJWT(id, No_control)
     const user = await User.findById(id)
 
 
-    let deptartament;
-    if ( user.role == 'USER_ROLE' ) {
-        deptartament = await Department.findOne({ user }, '_id name ubication')
-    }
-
     res.json({
         accessToken,
-        deptartament,
-        menu: getMenuFrontEnd( user.role ),
         status: true,
         user,
     })
