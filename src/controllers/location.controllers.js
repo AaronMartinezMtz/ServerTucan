@@ -36,7 +36,7 @@ const gerAllLocation = async(req, res = response ) => {
 
     try {
         
-        const location = await Location.find({},'-map -especialidad')
+        const location = await Location.find({},'-map -clases -description')
 
         res.status(201).json({
             status: true,
