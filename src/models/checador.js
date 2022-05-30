@@ -8,6 +8,10 @@ const ChecadorSchema = Schema({
         type:String,
         requied:true
     },
+    password:{
+        type:String,
+        requied:true
+    },
     value:{
         type:String,
         requied:true
@@ -20,7 +24,7 @@ const ChecadorSchema = Schema({
 })
 
 ChecadorSchema.method('toJSON', function(){
-    const { __v, value,  ...object } = this.toObject();
+    const { __v, password,  ...object } = this.toObject();
     // object.uid = _id
     return object;
 });

@@ -2,6 +2,8 @@ const { response } = require('express');
 const User = require('../models/user');
 const { generarJWT } = require('../helpers/jwt.helper');
 
+const Checador = require('../models/checador')
+
 
 
 
@@ -77,7 +79,7 @@ const login = async(req, res = response) => {
         }
 
 
-        const accessToken = await generarJWT(user.id, user.No_control);
+        const accessToken = await generarJWT(user.id);
 
 
         res.status(200).json({
@@ -98,7 +100,51 @@ const login = async(req, res = response) => {
 }
 
 
+const login_checador = async(req, res = response) => {
 
+    const { name, password } = req.body;
+
+    try {
+
+        const checador = await Checador.findOne({ name })
+
+
+        if (!checador) {
+            return res.status(404).json({
+                status: false,
+                message: 'name inválid'
+            })
+        }
+
+
+
+        if (!password) {
+            return res.status(404).json({
+                status: false,
+                message: 'Contraseña inválida.'
+            });
+        }
+
+
+        const accessToken = await generarJWT(checador.id);
+
+
+        res.status(200).json({
+            accessToken,
+            status: true,
+            checador,
+        });
+
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            status: false,
+            message: 'Hable con el administrador'
+        })
+    }
+    
+}
 
 
 
@@ -106,8 +152,7 @@ const login = async(req, res = response) => {
 const renewJWT = async(req, res = response) => {
 
     const id = req.id
-    const No_control = req.No_control
-    const accessToken = await generarJWT(id, No_control)
+    const accessToken = await generarJWT(id)
     const user = await User.findById(id)
 
 
@@ -119,8 +164,27 @@ const renewJWT = async(req, res = response) => {
 }
 
 
+
+
+const renewJWTChecador = async(req, res = response) => {
+
+    const id = req.id
+    const accessToken = await generarJWT(id)
+    const checador = await Checador.findById(id)
+
+
+    res.json({
+        accessToken,
+        status: true,
+        checador,
+    })
+}
+
+
 module.exports = {
     register,
     login,
-    renewJWT
+    renewJWT,
+    login_checador,
+    renewJWTChecador
 }

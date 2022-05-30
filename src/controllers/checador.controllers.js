@@ -79,9 +79,14 @@ const aChecador = async(req, res = response ) => {
 
 
 
+
+
+
+
+
 module.exports = {
     register,
     getAllChecadores,
-    aChecador
-
+    aChecador,
+    
 }

@@ -1,8 +1,8 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { register, login, renewJWT } = require('../controllers/auth.controllers.js');
+const { register, login, renewJWT, login_checador, renewJWTChecador} = require('../controllers/auth.controllers.js');
 const { validarCampos } = require('../middlewares/validar-campos.middleware');
-const { validarJWT, validarADMIN_ROLE } = require('../middlewares/validar-jwt.middleware');
+const { validarJWT} = require('../middlewares/validar-jwt.middleware');
 
 
 const router = Router();
@@ -27,7 +27,16 @@ router.post('/register', [
 
 
 
+
+router.post('/login/checador', [
+    check('name', 'El name es requerido.').not().isEmpty(),
+    check('password', 'El password es requerido.').not().isEmpty(),
+    validarCampos
+], login_checador);
+
+
 router.get('/renew', validarJWT, renewJWT);
+router.get('/renewChecador', validarJWT, renewJWTChecador);
 
 
 
