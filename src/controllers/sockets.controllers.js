@@ -30,7 +30,7 @@ const validarToChecador = async( value, checador, from ) => {
     if(checadorA.value==value){
 
         const status = true;
-        const user = await User.findById({from},'No_control','f_name','l_name','image')
+        const user = await User.findById(from)
         const new_value= generateP();
         checadorA.value=new_value;
         await checadorA.save()
