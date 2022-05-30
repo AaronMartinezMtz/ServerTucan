@@ -24,9 +24,10 @@ class Sockets {
             // Validar que el token sea valido
             const [ valid, id ] = comprobarJWT( socket.handshake.query['accessToken'] )
 
+            
 
             if ( !valid ) {
-                console.log('Socket no identificado');
+                console.log('Socket no identificado --->' + id);
                 return socket.disconnect();
             }
             // Conectar y actualzar en la db

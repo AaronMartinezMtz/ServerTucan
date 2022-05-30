@@ -2,22 +2,24 @@ const User = require('../models/user');
 const Checador= require('../models/checador')
 
 
-const userConnected = async( id ) => {
+const userConnected = ( id ) => {
 
-    const user = await User.findById(id);
-    user.online = true;
-    await user.save();
-    return user;
+    // const user = await User.findById(id);
+    // user.online = true;
+    // await user.save();
+    // return user;
+    return {"hola":"true"}
 
 }
 
 
-const userDisconnected = async( id ) => {
+const userDisconnected = ( id ) => {
 
-    const user = await User.findById(id);
-    user.online = false;
-    await user.save();
-    return user;
+    // const user = await User.findById(id);
+    // user.online = false;
+    // await user.save();
+    // return user;
+    return {"hola":"false"}
 
 }
 

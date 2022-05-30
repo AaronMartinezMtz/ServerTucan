@@ -19,6 +19,10 @@ const ChecadorSchema = Schema({
     ubication:{
         type:String,
         require:true
+    },
+    online:{
+        type:Boolean,
+        default:false
     }
 
 })
