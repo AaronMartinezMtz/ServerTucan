@@ -12,7 +12,7 @@ const Sockets = require('./sockets');
 class Server {
 
     constructor() {
-        this.app = express();;
+        this.app = express();
         this.port = process.env.PORT;
 
         // Conectar a db
@@ -38,7 +38,8 @@ class Server {
         
         this.app.use( express.static( path.resolve( __dirname, '../public' ) ) );
 
-        this.app.use( '/api/auth', require('../routes/auth.routes') );
+       
+        
         this.app.use( '/api/articles', require('../routes/articles.routes') );
         this.app.use( '/api/location', require('../routes/location.routes'));
         this.app.use( '/api/date', require('../routes/date.routes'));
